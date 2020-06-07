@@ -2,6 +2,7 @@ var controller = new ScrollMagic.Controller();
 var hookTrigger = 0.5;
 var width = $(window).width()
 
+pinning = new ScrollMagic.Scene({triggerElement: '#mobileStartPinning'}).triggerHook(0).addIndicators({name: "pinning"}).addTo(controller);
 if (width > 500) {
    hookTrigger = 'onCenter';
 } else {
@@ -10,20 +11,28 @@ if (width > 500) {
 
 $(window).bind("load", function() {
    if (width > 500) {
-      hookTrigger = 'onCenter';
       $('.images').css('height',''+($('.box-fix').height()+20)+'px');
    } else {
-      hookTrigger = 0.7
-      pinning = new ScrollMagic.Scene({triggerElement: '#mobileStartPinning',duration:'430%'}).setPin('#mobilePinning', {pushFollowers: false}).triggerHook('onLeave').addIndicators({name: "pinning"}).addTo(controller);
       $('.images').css('height','99vh');
    }
 });
 document.getElementsByTagName("BODY")[0].onresize = function() {
-   var width = $(window).width()
+   width = $(window).width()
    if (width > 500) {
+      scene1.triggerHook(0.5)
+      scene2.triggerHook(0.5)
+      scene3.triggerHook(0.5)
+      scene4.triggerHook(0.5)
+      scene5.triggerHook(0.5)
+      scene6.triggerHook(0.5)
       $('.images').css('height',''+($('.box-fix').height()+20)+'px');
    } else {
-      // pinning = new ScrollMagic.Scene({triggerElement: '#mobileStartPinning',duration:'430%'}).setPin('#mobilePinning', {pushFollowers: false}).triggerHook('onLeave').addIndicators({name: "pinning"}).addTo(controller);
+      scene1.triggerHook(0.7)
+      scene2.triggerHook(0.7)
+      scene3.triggerHook(0.7)
+      scene4.triggerHook(0.7)
+      scene5.triggerHook(0.7)
+      scene6.triggerHook(0.7)
       $('.images').css('height','99vh');
    }
 }
@@ -32,9 +41,15 @@ scene1 = new ScrollMagic.Scene({triggerElement: "#muka"})
                                  .on("enter",(e)=>{
                                     $('.hide').css('opacity',0)
                                     $('#mukaImages').css('opacity',1)
+                                    if (width < 501) {
+                                       pinning.setPin('#mobilePinning', {pushFollowers: false})
+                                    }
                                  })
                                  .on("leave",(e)=>{
                                     $('#mukaImages').css('opacity',0)
+                                    if (width < 501) {
+                                       pinning.removePin()
+                                    }
                                  })
                                  .addIndicators({name: "1 (duration: 0)"})
                                  .addTo(controller);
@@ -103,4 +118,18 @@ scene6 = new ScrollMagic.Scene({triggerElement: "#footer"})
                                     $('#lambungImages').css('opacity',1)
                                  })
                                  .addIndicators({name: "6 (duration: 0)"})
+                                 .addTo(controller);
+endPinning = new ScrollMagic.Scene({triggerElement: "#triggerEndPinning"})
+                                 .triggerHook(1)
+                                 .on("enter",(e)=>{
+                                    if (width < 501) {
+                                       pinning.removePin()
+                                    }
+                                 })
+                                 .on("leave",(e)=>{
+                                    if (width < 501) {
+                                       pinning.setPin('#mobilePinning', {pushFollowers: false})
+                                    }
+                                 })
+                                 .addIndicators({name: "endPinning"})
                                  .addTo(controller);
