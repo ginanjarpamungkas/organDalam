@@ -1,8 +1,8 @@
 var controller = new ScrollMagic.Controller();
 var hookTrigger = 0.5;
 var width = $(window).width()
+var pinning = $('#mobilePinning')
 
-pinning = new ScrollMagic.Scene({triggerElement: '#mobileStartPinning'}).triggerHook(0).addIndicators({name: "pinning"}).addTo(controller);
 if (width > 500) {
    hookTrigger = 'onCenter';
 } else {
@@ -26,32 +26,40 @@ document.getElementsByTagName("BODY")[0].onresize = function() {
       scene5.triggerHook(0.5)
       scene6.triggerHook(0.5)
       $('.images').css('height',''+($('.box-fix').height()+20)+'px');
+      $('#mobilePinning').css('position','relative').css('top',0).css('bottom','unset')
    } else {
-      scene1.triggerHook(0.7)
-      scene2.triggerHook(0.7)
-      scene3.triggerHook(0.7)
-      scene4.triggerHook(0.7)
-      scene5.triggerHook(0.7)
-      scene6.triggerHook(0.7)
+      scene1.triggerHook(0.8)
+      scene2.triggerHook(0.8)
+      scene3.triggerHook(0.8)
+      scene4.triggerHook(0.8)
+      scene5.triggerHook(0.8)
+      scene6.triggerHook(0.8)
       $('.images').css('height','99vh');
    }
 }
+pin = new ScrollMagic.Scene({triggerElement: '#mobileStartPinning'}).triggerHook(0)
+                                 .on("enter",(e)=>{
+                                    if (width < 501) {
+                                       pinning.css('position','fixed').css('top',0).css('bottom','unset')
+                                    }
+                                 })
+                                 .on("leave",(e)=>{
+                                    if (width < 501) {
+                                       pinning.css('position','relative').css('top',0).css('bottom','unset')
+                                    }
+                                 })
+                                 //.addIndicators({name: "startPinning"})
+                                 .addTo(controller);
 scene1 = new ScrollMagic.Scene({triggerElement: "#muka"})
                                  .triggerHook(hookTrigger)
                                  .on("enter",(e)=>{
                                     $('.hide').css('opacity',0)
                                     $('#mukaImages').css('opacity',1)
-                                    if (width < 501) {
-                                       pinning.setPin('#mobilePinning', {pushFollowers: false})
-                                    }
                                  })
                                  .on("leave",(e)=>{
                                     $('#mukaImages').css('opacity',0)
-                                    if (width < 501) {
-                                       pinning.removePin()
-                                    }
                                  })
-                                 .addIndicators({name: "1 (duration: 0)"})
+                                 //.addIndicators({name: "1 (duration: 0)"})
                                  .addTo(controller);
 scene2 = new ScrollMagic.Scene({triggerElement: "#paruParu"})
                                  .triggerHook(hookTrigger)
@@ -63,7 +71,7 @@ scene2 = new ScrollMagic.Scene({triggerElement: "#paruParu"})
                                     $('#paruParuImages').css('opacity',0)
                                     $('#mukaImages').css('opacity',1)
                                  })
-                                 .addIndicators({name: "2 (duration: 0)"})
+                                 //.addIndicators({name: "2 (duration: 0)"})
                                  .addTo(controller);
 
 scene3 = new ScrollMagic.Scene({triggerElement: "#jantung"})
@@ -76,7 +84,7 @@ scene3 = new ScrollMagic.Scene({triggerElement: "#jantung"})
                                     $('#jantungImages').css('opacity',0)
                                     $('#paruParuImages').css('opacity',1)
                                  })
-                                 .addIndicators({name: "3 (duration: 0)"})
+                                 //.addIndicators({name: "3 (duration: 0)"})
                                  .addTo(controller);
 
 scene4 = new ScrollMagic.Scene({triggerElement: "#liverDanGinjal"})
@@ -91,7 +99,7 @@ scene4 = new ScrollMagic.Scene({triggerElement: "#liverDanGinjal"})
                                     $('#ginjalImages').css('opacity',0)
                                     $('#jantungImages').css('opacity',1)
                                  })
-                                 .addIndicators({name: "4 (duration: 0)"})
+                                 //.addIndicators({name: "4 (duration: 0)"})
                                  .addTo(controller);
 scene5 = new ScrollMagic.Scene({triggerElement: "#ususDanLambung"})
                                  .triggerHook(hookTrigger)
@@ -106,7 +114,7 @@ scene5 = new ScrollMagic.Scene({triggerElement: "#ususDanLambung"})
                                     $('#liverImages').css('opacity',1)
                                     $('#ginjalImages').css('opacity',1)
                                  })
-                                 .addIndicators({name: "5 (duration: 0)"})
+                                 //.addIndicators({name: "5 (duration: 0)"})
                                  .addTo(controller);
 scene6 = new ScrollMagic.Scene({triggerElement: "#footer"})
                                  .triggerHook(hookTrigger)
@@ -117,19 +125,19 @@ scene6 = new ScrollMagic.Scene({triggerElement: "#footer"})
                                     $('#ususImages').css('opacity',1)
                                     $('#lambungImages').css('opacity',1)
                                  })
-                                 .addIndicators({name: "6 (duration: 0)"})
+                                 //.addIndicators({name: "6 (duration: 0)"})
                                  .addTo(controller);
 endPinning = new ScrollMagic.Scene({triggerElement: "#triggerEndPinning"})
                                  .triggerHook(1)
                                  .on("enter",(e)=>{
                                     if (width < 501) {
-                                       pinning.removePin()
+                                       pinning.css('position','absolute').css('top','unset').css('bottom',0)
                                     }
                                  })
                                  .on("leave",(e)=>{
                                     if (width < 501) {
-                                       pinning.setPin('#mobilePinning', {pushFollowers: false})
+                                       pinning.css('position','fixed').css('top',0).css('bottom','unset')
                                     }
                                  })
-                                 .addIndicators({name: "endPinning"})
+                                 //.addIndicators({name: "endPinning"})
                                  .addTo(controller);
