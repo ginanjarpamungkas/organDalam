@@ -1,4 +1,4 @@
-html {font-family:'Montserrat', Arial, sans-serif; /* 1 */-ms-text-size-adjust:none; /* 2 */-webkit-text-size-adjust:none; /* 2 */font-size:16px; -webkit-font-smoothing: antialiased; font-weight:400; color:#707070;margin:0 auto; background:#fff;overflow-x: hidden;width: 100vw;}
+html {font-family:'Montserrat', Arial, sans-serif; /* 1 */-ms-text-size-adjust:none; /* 2 */-webkit-text-size-adjust:none; /* 2 */font-size:16px; -webkit-font-smoothing: antialiased; font-weight:400; color:#707070;margin:0 auto; background:#fff;overflow-x: hidden;width: 100vw;scroll-behavior: smooth;}
 div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 article,aside,details,time,caption,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary {display: block;}
 audio,canvas,progress,video {display: inline-block; /* 1 */vertical-align: baseline; /* 2 */}
@@ -384,7 +384,7 @@ p:last-child{margin:0;}
 }
 @media screen and (max-width:800px){
 h1.bigtitle{font-size:32px; line-height:36px; margin:0 0 30px 0; font-weight:800;}
-h2.bigtitle{font-size:20px; line-height:24px; margin:15px 0; font-weight:800;}	
+h2.bigtitle{font-size:20px; line-height:24px; margin:15px 0; font-weight:800;text-shadow: -1px 1px 1px #fff;}	
 p{font-size:16px; line-height:20px;  margin:0 0 30px 0;}
 .box-home{min-height:100vh; height:auto;}
 .box-home .box-fix{padding-right:15px; padding-bottom:30px; width:75%;}
@@ -402,3 +402,4 @@ footer .related-article .content-article{padding-left:0; padding-right:0;}
 	.box-home .box-fix{position:unset;float:right}
     .mobile-trigger{height: 100vh;position: relative;z-index: 100;display: flex;align-items: center;}
 }
+@-webkit-keyframes back-top{0%{-webkit-transform:rotate(135deg) translate(0, 0);opacity:0}50%{opacity:1}100%{-webkit-transform:rotate(135deg) translate(-20px, 20px);opacity:0}}@keyframes back-top{0%{-webkit-transform:rotate(135deg) translate(0, 0);transform:rotate(135deg) translate(0, 0);opacity:0}50%{opacity:1}100%{-webkit-transform:rotate(135deg) translate(-20px, 20px);transform:rotate(135deg) translate(-20px, 20px);opacity:0}}
