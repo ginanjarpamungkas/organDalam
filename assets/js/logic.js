@@ -12,6 +12,7 @@ if (width > 500) {
 $(window).bind("load", function() {
    if (width > 500) {
       $('.images').css('height',''+($('.box-fix').height()+20)+'px');
+      $('.box-home').css('height',''+$('.box-fix').height()+'px');
    } else {
       $('.images').css('height','99vh');
    }
@@ -27,6 +28,7 @@ document.getElementsByTagName("BODY")[0].onresize = function() {
       scene6.triggerHook(0.5)
       $('.images').css('height',''+($('.box-fix').height()+20)+'px');
       $('#mobilePinning').css('position','relative').css('top',0).css('bottom','unset')
+      $('.box-home').css('height',''+$('.box-fix').height()+'px');
    } else {
       scene1.triggerHook(0.8)
       scene2.triggerHook(0.8)
@@ -35,6 +37,7 @@ document.getElementsByTagName("BODY")[0].onresize = function() {
       scene5.triggerHook(0.8)
       scene6.triggerHook(0.8)
       $('.images').css('height','99vh');
+      $('.box-home').css('height','400vh');
    }
 }
 pin = new ScrollMagic.Scene({triggerElement: '#mobileStartPinning'}).triggerHook(0)
